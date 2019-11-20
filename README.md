@@ -1,6 +1,6 @@
 # ssr-presentation-2019
 
-Slides (in Bulgarian) for an "Server-Side Rendering" presentation I gave at a [dev.bg](https://dev.bg/) meetup in Sofia, Bulgaria.
+Slides (in Bulgarian) for a "Server-Side Rendering" presentation I gave at a [dev.bg](https://dev.bg/) meetup in Sofia, Bulgaria.
 
 Available on [gar.dev/ssr-presentation/](https://gar.dev/ssr-presentation/)
 
