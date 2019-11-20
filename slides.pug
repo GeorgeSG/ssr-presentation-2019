@@ -1,0 +1,243 @@
+.slides
+  section
+    h2 Server-Side Rendering
+
+  section(data-fullscreen data-background-color="white" data-transition="fade-in fade-out")
+    .about-me
+      img.photo(data-src="assets/georgi.jpg" style="height: 320px")
+      ul
+        li
+          img(data-src="assets/icon-user.png")
+          | Георги Гърдев
+        li
+          img(data-src="assets/icon-email.png")
+          a(href="mailto:georgi@gardev.com") georgi@gardev.com
+        li
+          img(data-src="assets/icon-web.png")
+          a(href="https://gar.dev" target="_blank") gar.dev
+        li
+          img(data-src="assets/icon-github.png")
+          a(href="https://github.com/GeorgeSG") GeorgeSG
+        li
+          img(data-src="assets/icon-twitter.png")
+          a(href="https://twitter.com/georgesg92" target="_blank") georgesg92
+
+  section(
+      data-fullscreen
+      data-background-image="assets/leanplum-background.svg"
+      data-background-position="300px -800px"
+      data-transition="fade"
+      data-transition-speed="fast"
+      data-background-color="rgb(242, 241, 243)"
+  )
+    img.leanplum-logo(data-src="assets/leanplum-logo.svg")
+    p.fragment.leanplum-technologies
+      img.logo.padded(data-src="assets/vuejs.jpg" style='height: 150px; width: 150px')
+      img.logo.padded(data-src="assets/ts.png" style='height: 150px; width: 150px')
+
+  section
+    h2 Какво е
+      br
+      | Server-Side Rendering?
+
+  section
+    h3 На прост език:
+      br
+      | сглобяване на HTML на сървъра
+
+  section
+    h2 Това SSR ли е?
+    pre.fragment
+      code.php
+        | &lt;?php
+        |     $name = 'Georgi Gardev';
+        |     echo '<div id="app">My name is' . $name . '</div>';
+        | ?&gt;
+    p.fragment ДА!
+      p.fragment.blue ... донякъде
+
+    aside.notes
+      | HTML=aа се генерира на сървъра. Когато достъпим този php файл, сървъра ще сглоби HTML-а и ще го върне.
+
+  section
+    .fragment
+      img(data-src="assets/jsp-logo.jpeg" height="150px" style="padding: 10px; background: #fff")
+    .fragment
+      img(data-src="assets/django-logo.png" height="100px")
+    .fragment
+      img(data-src="assets/rails-logo.png" height="150px")
+
+
+  section
+    h2 ... и след това дойде JavaScript
+
+  section
+    img(data-src="assets/browser-logos.png")
+    p.fragment имаме модерни browser-и
+
+  section(
+      data-fullscreen
+      data-background-image="assets/ryzen.png")
+
+  section(
+      data-fullscreen
+      data-background-image="assets/ram.jpeg")
+
+  section
+    h2 The age of Single-Page Apps
+
+  section
+    img.logo.fragment(data-src="assets/angular-icon.svg" style="padding: 10px")
+    img.logo.fragment(data-src="assets/react.png" style="padding: 10px")
+    img.logo.fragment(data-src="assets/vue-logo.png" style="padding: 10px")
+
+  section
+    h2 Проблеми
+
+  section
+    h2 1. Accessibility
+    p.fragment SPA workaround: Фокусиране върху&nbsp;&lt;body>
+      | &nbsp;и слагане на tabindex="-1"?
+
+  section
+    h2 2. SEO
+    p.fragment Server:
+    pre.fragment
+      code.html
+        | <div id="app">Loading...</div>
+    p.fragment Web crawler:
+    p
+      pre.fragment
+        em Dude, where's your page?
+
+  section
+    h2 3. Performance
+
+  section(
+      data-fullscreen
+      data-transition="fade-in fade-out"
+      data-background-size="contain"
+      data-background-color="white"
+      data-background-image="assets/csr-diagram.png")
+
+  section
+    h2 Решението - обратно към Server-Side Rendering
+    p.fragment ...но все пак с библиотеките, които харесваме
+
+  section
+    h2 Enter node.js
+    p.fragment С node.js можем да изпълняваме един и същ код и на сървъра, и в браузъра
+
+  section(
+      data-fullscreen
+      data-background-size="contain"
+      data-background-image="assets/hmm.png")
+
+  section
+    h2 Опция 1: Universal Mode
+    p.fragment.left 1. Библиотеката се интерпретира на сървъра
+    p.fragment.left 2. Поисканата страница се рендерира (до колкото е възможно)
+    p.fragment.left 3. Рендерирания HTML се връща на клиента
+
+  section
+    h2 Hydration
+    p.fragment след като първоначалния HTML е зареден, зареждане на допълнителен JavaScript
+
+  section(
+      data-fullscreen
+      data-transition="fade-in fade-out"
+      data-background-size="contain"
+      data-background-color="white"
+      data-background-image="assets/ssr-diagram.png")
+
+  section
+    p (
+      span.fragment Dynamic hydration?
+    p.fragment за различни User Agents?
+    p.fragment за различни категории устройства?)
+
+  section
+    h2 Universal mode: Recap
+    p.fragment.left 1. Рендериране на HTML на сървъра
+    p.fragment.left 2. Изрисуване на HTML-а
+    p.fragment.left 3. Сваляне на JavaScript и хидратация
+
+  section
+    h2 Опция 2: Static Site Generation
+    p.fragment.left
+      span.green +&nbsp;
+      | Не изисква сървър
+    p.fragment.left
+      span.green +&nbsp;
+      | Може да се хостне навсякъде - CDN, Github Pages
+    p.fragment.left
+      span.red -&nbsp;
+      | неудобно ако съдържанието се променя често
+    p.fragment.left
+      span.red -&nbsp;
+      | неудобно ако имате много динамични страници
+
+  section
+    h2
+      img(data-src="assets/nuxtjs.jpg")
+
+  section
+    h3 Nuxt.js
+    p.fragment.left - Базиран на Vue.js
+    p.fragment.left - Включва Vue Router, Vuex, Vue Meta и други
+    p.fragment.left - Предефинирана конфигурация за Vue, Webpack, Babel и PostCSS
+    p.fragment.left - Лесно конфигуриране, дефиниране на plugins, middlewares и други
+    p.fragment.left - 57 KB (minified + gzipped)
+    p.fragment.left - SPA / SSR / Static Generation
+
+  section(
+      data-fullscreen
+      data-transition="fade-in fade-out"
+      data-background-size="contain"
+      data-background-color="white"
+      data-background-image="assets/downloads.jpg")
+
+  section
+    h2 Ползва се в:
+    p.fragment Todoist
+    p.fragment GitLab
+    p.fragment Roland Garros
+    p.fragment Louis Vuitton
+
+  section
+    h2 Алтернативи
+    p.fragment Next.js (React)
+    p.fragment GatsbyJS (React)
+
+
+  section
+    h2 Demo
+
+  section
+    h2 JAMstack
+    p.fragment jamstack.org
+
+  section
+    p.fragment.green JavaScript
+    p.fragment.blue APIs
+    p.fragment.red Markup
+
+  section
+    h2 Headless CMS
+    p.fragment Prismic.io
+    p.fragment Contentful
+    p.fragment Wordpress REST API
+
+  section
+    h2 Static Deployment
+    p.fragment GitHub (за пре-рендерирани страници)
+    p.fragment Netlify
+    p.fragment CloudFlare
+    p.fragment Firebase
+
+  section
+    h2 Q & A
+
+  section
+    h4 NEXT
+    h2 Building resilient JavaScript API, Михаил Миков

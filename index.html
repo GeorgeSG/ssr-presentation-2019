@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Server-Side Rendering: наживо с Nuxt.js</title>
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css">
+    <link rel="stylesheet" href="lib/css/atom-one-dark.css">
+    <link rel="stylesheet" href="css/custom.css">
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h2>Server-Side Rendering</h2>
+        </section>
+        <section data-fullscreen data-background-color="white" data-transition="fade-in fade-out">
+          <div class="about-me"><img class="photo" data-src="assets/georgi.jpg" style="height: 320px">
+            <ul>
+              <li><img data-src="assets/icon-user.png">Георги Гърдев</li>
+              <li><img data-src="assets/icon-email.png"><a href="mailto:georgi@gardev.com">georgi@gardev.com</a></li>
+              <li><img data-src="assets/icon-web.png"><a href="https://gar.dev" target="_blank">gar.dev</a></li>
+              <li><img data-src="assets/icon-github.png"><a href="https://github.com/GeorgeSG">GeorgeSG</a></li>
+              <li><img data-src="assets/icon-twitter.png"><a href="https://twitter.com/georgesg92" target="_blank">georgesg92</a></li>
+            </ul>
+          </div>
+        </section>
+        <section data-fullscreen data-background-image="assets/leanplum-background.svg" data-background-position="300px -800px" data-transition="fade" data-transition-speed="fast" data-background-color="rgb(242, 241, 243)"><img class="leanplum-logo" data-src="assets/leanplum-logo.svg">
+          <p class="fragment leanplum-technologies"><img class="logo padded" data-src="assets/vuejs.jpg" style="height: 150px; width: 150px"><img class="logo padded" data-src="assets/ts.png" style="height: 150px; width: 150px"></p>
+        </section>
+        <section>
+          <h2>Какво е<br>Server-Side Rendering?</h2>
+        </section>
+        <section>
+          <h3>На прост език:<br>сглобяване на HTML на сървъра</h3>
+        </section>
+        <section>
+          <h2>Това SSR ли е?</h2>
+          <pre class="fragment"><code class="php">&lt;?php
+    $name = 'Georgi Gardev';
+    echo '<div id="app">My name is' . $name . '</div>';
+?&gt;</code></pre>
+          <p class="fragment">ДА!
+            <p class="fragment blue">... донякъде</p>
+          </p>
+          <aside class="notes">HTML=aа се генерира на сървъра. Когато достъпим този php файл, сървъра ще сглоби HTML-а и ще го върне.</aside>
+        </section>
+        <section>
+          <div class="fragment"><img data-src="assets/jsp-logo.jpeg" height="150px" style="padding: 10px; background: #fff"></div>
+          <div class="fragment"><img data-src="assets/django-logo.png" height="100px"></div>
+          <div class="fragment"><img data-src="assets/rails-logo.png" height="150px"></div>
+        </section>
+        <section>
+          <h2>... и след това дойде JavaScript</h2>
+        </section>
+        <section><img data-src="assets/browser-logos.png">
+          <p class="fragment">имаме модерни browser-и</p>
+        </section>
+        <section data-fullscreen data-background-image="assets/ryzen.png"></section>
+        <section data-fullscreen data-background-image="assets/ram.jpeg"></section>
+        <section>
+          <h2>The age of Single-Page Apps</h2>
+        </section>
+        <section><img class="logo fragment" data-src="assets/angular-icon.svg" style="padding: 10px"><img class="logo fragment" data-src="assets/react.png" style="padding: 10px"><img class="logo fragment" data-src="assets/vue-logo.png" style="padding: 10px"></section>
+        <section>
+          <h2>Проблеми</h2>
+        </section>
+        <section>
+          <h2>1. Accessibility</h2>
+          <p class="fragment">
+            SPA workaround: Фокусиране върху&nbsp;&lt;body>&nbsp;и слагане на tabindex="-1"?</p>
+        </section>
+        <section>
+          <h2>2. SEO</h2>
+          <p class="fragment">Server:</p>
+          <pre class="fragment"><code class="html"><div id="app">Loading...</div></code></pre>
+          <p class="fragment">Web crawler:</p>
+          <p>
+            <pre class="fragment"><em>Dude, where's your page?</em></pre>
+          </p>
+        </section>
+        <section>
+          <h2>3. Performance</h2>
+        </section>
+        <section data-fullscreen data-transition="fade-in fade-out" data-background-size="contain" data-background-color="white" data-background-image="assets/csr-diagram.png"></section>
+        <section>
+          <h2>Решението - обратно към Server-Side Rendering</h2>
+          <p class="fragment">...но все пак с библиотеките, които харесваме</p>
+        </section>
+        <section>
+          <h2>Enter node.js</h2>
+          <p class="fragment">С node.js можем да изпълняваме един и същ код и на сървъра, и в браузъра</p>
+        </section>
+        <section data-fullscreen data-background-size="contain" data-background-image="assets/hmm.png"></section>
+        <section>
+          <h2>Опция 1: Universal Mode</h2>
+          <p class="fragment left">1. Библиотеката се интерпретира на сървъра</p>
+          <p class="fragment left">2. Поисканата страница се рендерира (до колкото е възможно)</p>
+          <p class="fragment left">3. Рендерирания HTML се връща на клиента</p>
+        </section>
+        <section>
+          <h2>Hydration</h2>
+          <p class="fragment">след като първоначалния HTML е зареден, зареждане на допълнителен JavaScript</p>
+        </section>
+        <section data-fullscreen data-transition="fade-in fade-out" data-background-size="contain" data-background-color="white" data-background-image="assets/ssr-diagram.png"></section>
+        <section>
+          <p>(<span class="fragment">Dynamic hydration?</span></p>
+          <p class="fragment">за различни User Agents?</p>
+          <p class="fragment">за различни категории устройства?)</p>
+        </section>
+        <section>
+          <h2>Universal mode: Recap</h2>
+          <p class="fragment left">1. Рендериране на HTML на сървъра</p>
+          <p class="fragment left">2. Изрисуване на HTML-а</p>
+          <p class="fragment left">3. Сваляне на JavaScript и хидратация</p>
+        </section>
+        <section>
+          <h2>Опция 2: Static Site Generation</h2>
+          <p class="fragment left"><span class="green">+&nbsp;</span>Не изисква сървър</p>
+          <p class="fragment left"><span class="green">+&nbsp;</span>Може да се хостне навсякъде - CDN, Github Pages</p>
+          <p class="fragment left"><span class="red">-&nbsp;</span>неудобно ако съдържанието се променя често</p>
+          <p class="fragment left"><span class="red">-&nbsp;</span>неудобно ако имате много динамични страници</p>
+        </section>
+        <section>
+          <h2><img data-src="assets/nuxtjs.jpg"></h2>
+        </section>
+        <section>
+          <h3>Nuxt.js</h3>
+          <p class="fragment left">- Базиран на Vue.js</p>
+          <p class="fragment left">- Включва Vue Router, Vuex, Vue Meta и други</p>
+          <p class="fragment left">- Предефинирана конфигурация за Vue, Webpack, Babel и PostCSS</p>
+          <p class="fragment left">- Лесно конфигуриране, дефиниране на plugins, middlewares и други</p>
+          <p class="fragment left">- 57 KB (minified + gzipped)</p>
+          <p class="fragment left">- SPA / SSR / Static Generation</p>
+        </section>
+        <section data-fullscreen data-transition="fade-in fade-out" data-background-size="contain" data-background-color="white" data-background-image="assets/downloads.jpg"></section>
+        <section>
+          <h2>Ползва се в:</h2>
+          <p class="fragment">Todoist</p>
+          <p class="fragment">GitLab</p>
+          <p class="fragment">Roland Garros</p>
+          <p class="fragment">Louis Vuitton</p>
+        </section>
+        <section>
+          <h2>Алтернативи</h2>
+          <p class="fragment">Next.js (React)</p>
+          <p class="fragment">GatsbyJS (React)</p>
+        </section>
+        <section>
+          <h2>Demo</h2>
+        </section>
+        <section>
+          <h2>JAMstack</h2>
+          <p class="fragment">jamstack.org</p>
+        </section>
+        <section>
+          <p class="fragment green">JavaScript</p>
+          <p class="fragment blue">APIs</p>
+          <p class="fragment red">Markup</p>
+        </section>
+        <section>
+          <h2>Headless CMS</h2>
+          <p class="fragment">Prismic.io</p>
+          <p class="fragment">Contentful</p>
+          <p class="fragment">Wordpress REST API</p>
+        </section>
+        <section>
+          <h2>Static Deployment</h2>
+          <p class="fragment">GitHub (за пре-рендерирани страници)</p>
+          <p class="fragment">Netlify</p>
+          <p class="fragment">CloudFlare</p>
+          <p class="fragment">Firebase</p>
+        </section>
+        <section>
+          <h2>Q & A</h2>
+        </section>
+        <section>
+          <h4>NEXT</h4>
+          <h2>Building resilient JavaScript API, Михаил Миков</h2>
+        </section>
+      </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+      Reveal.initialize({
+        controls: false,
+        controlsTutorial: false,
+        history: true,
+        dependencies: [
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/fullscreen/fullscreen.js'}
+        ]
+      });
+    </script>
+  </body>
+</html>
