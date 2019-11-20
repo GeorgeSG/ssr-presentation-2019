@@ -2,7 +2,7 @@
 
 Slides (in Bulgarian) for a "Server-Side Rendering" presentation I gave at a [dev.bg](https://dev.bg/) meetup in Sofia, Bulgaria.
 
-Available on [gar.dev/ssr-presentation/](https://gar.dev/ssr-presentation/)
+Available on [ssr-presentation-2019.gar.dev/](https://ssr-presentation-2019.gar.dev/)
 
 ##
 
